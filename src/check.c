@@ -50,6 +50,8 @@ int check_micro_version = CHECK_MICRO_VERSION;
 
 const char* current_test_name = NULL;
 
+List* all_tests = check_list_create();
+
 static int non_pass(int val);
 static Fixture *fixture_create(SFun fun, int ischecked);
 static void tcase_add_fixture(TCase * tc, SFun setup, SFun teardown,

@@ -3,6 +3,7 @@
 TESTS = \
 	check_check_export	\
 	check_check		\
+	check_unrun_tests	\
 	test_output.sh		\
 	test_check_nofork.sh    \
 	test_check_nofork_teardown.sh    \
@@ -22,6 +23,7 @@ TESTS = \
 noinst_PROGRAMS =		\
 	check_check_export	\
 	check_check		\
+	check_unrun_tests		\
 	check_stress		\
 	check_thread_stress	\
 	check_nofork		\
@@ -35,6 +37,7 @@ EXTRA_DIST = test_output.sh test_check_nofork.sh test_check_nofork_teardown.sh t
 if NO_TIMEOUT_TESTS
 check_check_CFLAGS = -DTIMEOUT_TESTS_ENABLED=0
 check_check_export_CFLAGS = -DTIMEOUT_TESTS_ENABLED=0
+check_unrun_tests_CFLAGS = -DTIMEOUT_TESTS_ENABLED=0
 endif
 
 check_check_export_SOURCES = \
@@ -64,6 +67,9 @@ check_check_SOURCES = \
 	check_check_tags.c         	\
 	check_check_main.c
 check_check_LDADD = $(top_builddir)/src/libcheckinternal.la $(top_builddir)/lib/libcompat.la
+
+check_unrun_tests_SOURCES = check_unrun_tests.c
+check_unrun_tests_LDADD = $(top_builddir)/src/libcheckinternal.la $(top_builddir)/lib/libcompat.la
 
 check_mem_leaks_SOURCES = 	\
 	check_mem_leaks.c 		\
