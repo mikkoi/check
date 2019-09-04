@@ -96,6 +96,8 @@ endmacro(ck_check_include_file)
 # Some FreeBSD headers assume sys/types.h was already included.
 ck_check_include_file("sys/types.h" HAVE_SYS_TYPES_H)
 
+ck_check_include_file("sys/inttypes.h" HAVE_SYS_INTTYPES_H)
+
 # Alphabetize the rest unless there's a compelling reason
 ck_check_include_file("errno.h" HAVE_ERRNO_H)
 ck_check_include_file("inttypes.h" HAVE_INTTYPES_H)

@@ -1,6 +1,38 @@
 #ifndef _CHECK_CHECK_STDINT_H
 #define _CHECK_CHECK_STDINT_H 1
-#ifdef HAVE_STDINT_H
+
+#cmakedefine HAVE_STDINT_H 1
+#cmakedefine HAVE_INTTYPES_H 1
+#cmakedefine HAVE_SYS_TYPES_H 1
+#cmakedefine HAVE_SYS_INTTYPES_H 1
+
+#if defined(HAVE_STDINT_H)
+#define _STDINT_HAVE_STDINT_H 1
 #include <stdint.h>
+#elif defined(HAVE_INTTYPES_H)
+#include <inttypes.h>
+#elif defined(HAVE_SYS_TYPES_H)
+#include <sys/types.h>
+#elif defined(HAVE_SYS_INTTYPES_H)
+#include <sys/inttypes.h>
+#else
+
 #endif
+
+/* Remove internal definitions */
+#ifdef HAVE_STDINT_H
+#undef HAVE_STDINT_H
 #endif
+#ifdef HAVE_INTTYPES_H
+#undef HAVE_INTTYPES_H
+#endif
+#ifdef HAVE_SYS_TYPES_H
+#undef HAVE_SYS_TYPES_H
+#endif
+#ifdef HAVE_SYS_INTTYPES_H
+#undef HAVE_SYS_INTTYPES_H
+#endif
+
+
+
+#endif /* _CHECK_CHECK_STDINT_H */
