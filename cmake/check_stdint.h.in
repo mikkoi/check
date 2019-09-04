@@ -4,7 +4,6 @@
 #define _GENERATED_STDINT_H "@PROJECT_NAME@ @PROJECT_VERSION@"
 /* generated using CMake @CMAKE_VERSION@ from file cmake/check_stdint.h.in */
 
-#cmakedefine AC_CV_HEADER_STDINT_T 1
 #cmakedefine HAVE_STDINT_H 1
 #cmakedefine HAVE_INTTYPES_H 1
 #cmakedefine HAVE_SYS_TYPES_H 1
@@ -12,25 +11,19 @@
 
 
 #pragma message("MESSAGE: In check_stdint.h now.")
-#if defined(AC_CV_HEADER_STDINT_T)
-#pragma message("MESSAGE: Simply include stdint.h in check_stdint.h")
-#define _STDINT_HAVE_STDINT_H 1
-#include <stdint.h>
-#else /* defined AC_CV_HEADER_STDINT_T */
-#pragma message("MESSAGE: Do not simply include stdint.h in check_stdint.h")
-
 
 /* ................... shortcircuit part ........................... */
 
 #if defined HAVE_STDINT_H || defined _STDINT_HAVE_STDINT_H
 #pragma message("MESSAGE: defined HAVE_STDINT_H || defined _STDINT_HAVE_STDINT_H")
+#define _STDINT_HAVE_STDINT_H 1
 #include <stdint.h>
 #else
 #include <stddef.h>
 
-#pragma message("MESSAGE: Doing configured part in check_stdint.h. Include stddef.h")
-
 /* .................... configured part ............................ */
+
+#pragma message("MESSAGE: Doing configured part in check_stdint.h. Include stddef.h")
 
 #if defined(_STDINT_HEADER_INTPTR)
 #define AC_HEADER _STDINT_HEADER_INTPTR
@@ -400,7 +393,7 @@ typedef           long   intptr_t;
 # define UINT_LEAST32_MAX       UINT32_MAX
 # define UINT_LEAST64_MAX       UINT64_MAX
 
-  /* shortcircuit*/
+/* shortcircuit*/
 #endif /* defined HAVE_STDINT_H || defined _STDINT_HAVE_STDINT_H */
 
 
@@ -414,8 +407,6 @@ typedef           long   intptr_t;
 /* #include <sys/inttypes.h> */
 /* #else */
 /* #endif */
-
-#endif /* defined AC_CV_HEADER_STDINT_T */
 
 /* Remove internal definitions */
 #ifdef HAVE_STDINT_H
@@ -434,3 +425,4 @@ typedef           long   intptr_t;
 /* Once */
 #endif /* _GENERATED_STDINT_H */
 #endif /* _CHECK_CHECK_STDINT_H */
+

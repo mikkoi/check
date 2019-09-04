@@ -335,6 +335,21 @@ set(CONFIG_HEADER ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # Generate "check_stdint.h" from "cmake/check_stdint.h.in"
 # TODO Convert m4/ax_create_stdint_h.m4
 # TODO Remove the following row when PROJECT_VERSION is available!!!
+
+# This is converted from m4/ax_create_stdint_h.m4 macro
+# The m4 macro generates the whole file from scratch.
+# With CMake our approach is different.
+# We have an almost complete header file `cmake/check_stdint.h.in`
+# and we use defines to apply those parts which are needed.
+# We use CMake macros to check if certain files or symbols exist
+# and the size of different datatypes.
+#
+# User can override by defining the symbol _STDINT_HAVE_STDINT_H
+# before including `check.h` which in turn includes `check_stdint.h`.
+# This causes check_stdint.h to
+# include `stdint.h` from the normal include path and not
+# do anything else.
+# 
 set(PROJECT_VERSION "${check_VERSION}")
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/check_stdint.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/check_stdint.h)
