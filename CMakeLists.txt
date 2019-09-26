@@ -24,6 +24,11 @@ if(POLICY CMP0076)
   # target_sources() leaves relative source file paths unmodified. (OLD)
   cmake_policy(SET CMP0076 OLD)
 endif()
+if(POLICY CMP0074)
+  # Use <PackageName>_ROOT variables. (NEW)
+  cmake_policy(SET CMP0074 NEW)
+endif()
+
 project(check
   DESCRIPTION "Unit Testing Framework for C"
   LANGUAGES C)
@@ -350,7 +355,9 @@ if (HAVE_LIBRT)
   ADD_DEFINITIONS(-DHAVE_LIBRT=1)
 endif (HAVE_LIBRT)
 
-check_library_exists(subunit subunit_test_start "" HAVE_SUBUNIT)
+find_package(Subunit)
+set(HAVE_SUBUNIT "${Subunit_FOUND}")
+
 if (HAVE_SUBUNIT)
   set(SUBUNIT "subunit")
   set(ENABLE_SUBUNIT 1)
