@@ -62,6 +62,39 @@ include(GNUInstallDirs)
 set(CMAKE_C_STANDARD 90)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)          # Use GNU extensions and POSIX standard
+# if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
+  string(APPEND CMAKE_C_FLAGS_DEBUG
+    " -Wall"
+    " -Wextra"
+    " -pedantic"
+    " -Wconversion"
+    " -Wsign-conversion"
+    # # " -Wpedantic"
+    # #" -fsanitize=address" # Disable sanitizers to activate libasan for valgrind.
+    # " -fno-omit-frame-pointer"
+    # # " -fsanitize=address"
+    # # " -static-libasan"
+    # " -fno-omit-frame-pointer"
+    # # " -Wl"
+    # # " -std=c89"
+    # # Some of these are already part of -Wextra
+    # " -Wpointer-arith -Wstrict-prototypes"
+    # # " -O2"
+    # " -pedantic"
+    " -Wmissing-prototypes -Wmissing-declarations"
+    " -Wstrict-prototypes -Wpointer-arith"
+    " -Wwrite-strings -Wcast-qual -Wcast-align"
+    " -Wbad-function-cast"
+    " -Wformat-security  -Wformat-nonliteral"
+    " -Wmissing-format-attribute"
+    " -Winline"
+    # # " -Wno-incompatible-pointer-types"
+    # # https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.html#C-CPP
+    # " -funsigned-char" # forces unspecified "char"s to be unsigned
+    " -Wswitch-default"
+    " -Wstrict-prototypes"
+    )
+# endif()
 
 ###############################################################################
 # Option
